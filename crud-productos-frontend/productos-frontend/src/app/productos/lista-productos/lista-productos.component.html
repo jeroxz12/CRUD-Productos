@@ -1,0 +1,30 @@
+<div class="container">
+  <h2 class="text-center m-4">Lista de Productos</h2>
+  <button class="btn btn-md btn-success m-3" [routerLink]="['formulario']" >Crear un Producto</button>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Imagen</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Precio</th>
+        <th scope="col">Stock</th>
+        <th scope="col">Categoria</th>
+        <th scope="col">Fecha de Creacion</th>
+        <th scope="col">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let producto of listaProductos">
+        <td>{{producto.id}}</td>
+        <td><img src={{producto.imagen}} alt="Imagen de Producto" width="100" height="100"></td>
+        <td>{{producto.nombre}}</td>
+        <td>{{producto.precio | currency: 'ARS '}}</td>
+        <td>{{producto.stock}}</td>
+        <td>{{producto.categoria.nombre}}</td>
+        <td>{{producto.createdAt | date: 'dd/MM/yyyy' }}</td>
+        <td><a  class="btn btn-sm btn-primary m-2" [routerLink]="['formulario', producto.id]">Editar</a>  <a  class="btn btn-sm btn-danger" (click)="borrarProducto(producto.id)">Eliminar</a></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
